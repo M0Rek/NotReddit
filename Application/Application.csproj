@@ -7,9 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="IDAOs" />
-      <Folder Include="ILogic" />
-      <Folder Include="Logic" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
 </Project>

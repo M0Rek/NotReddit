@@ -1,0 +1,20 @@
+// log in as Troels
+#POST https://localhost:7233/auth/login
+#Content-Type: application/json
+#
+#{
+#  "username": "string",
+#  "password": "string"
+#}
+###
+
+POST https://localhost:7233/post/
+Content-Type: application/json
+{
+  "originalPosterId": 1,
+  "title": "first post on not reddit!",
+  "content": "Pretty cool reddit clone not gonna lie."
+}
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIyNDdiYzA3ZC00ZGNhLTQwMDAtYTI3ZS0yZmNkODNiZGNmMDYiLCJpYXQiOiIwMy4xMS4yMDIyIDEwOjMwOjM3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InN0cmluZyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJVc2VybmFtZSI6InN0cmluZyIsIkVtYWlsIjoic3RyaW5nIiwiZXhwIjoxNjY3NDc1MDM3LCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.lJrfVyrl666McxbxMLoEYSnGySJBRanNI7B5rzS4Y_bUcOK5h0mBt_4P9-GJJGjGWB-ZQJOzB8EV0pvKlvjiVA
+
+

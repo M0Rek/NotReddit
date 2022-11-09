@@ -33,11 +33,11 @@ public class UserFileDao : IUserDao
         {
                 User? existing =
                         context.Users.FirstOrDefault(u =>
-                                userName.Equals(u.UserName, StringComparison.OrdinalIgnoreCase));
+                                userName.Equals(u.Username, StringComparison.OrdinalIgnoreCase));
                 return Task.FromResult<User?>(existing);
         }
 
-        public Task<User?> getByIdAsync(int id)
+        public Task<User?> GetByIdAsync(int id)
         {
                 User? existing = context.Users.FirstOrDefault(u => id == u.Id);
 

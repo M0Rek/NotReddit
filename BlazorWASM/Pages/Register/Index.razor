@@ -43,6 +43,9 @@
                 Email = _email,
                 Password = _password
             });
+            
+            await AuthService.LoginAsync(_username, _password);
+
             NavManager.NavigateTo("/");
         }
         catch (Exception e)

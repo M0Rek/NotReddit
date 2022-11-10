@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using BlazorWASM.Services.ClientInterfaces;
@@ -17,6 +18,7 @@ public class CommentService : ICommentService
 
     public async Task<Comment> CreateAsync(CommentCreationRequestDto dto)
     {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthService.Jwt);
         var result = await _client.PostAsJsonAsync("Comments", dto);
 
         string responseContent = await result.Content.ReadAsStringAsync();

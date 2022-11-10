@@ -7,9 +7,12 @@
         <MudText Align="Align.Right" Inline="true" Typo="Typo.caption">@PostCreatedDate.ToShortDateString()</MudText>
     </MudContainer>
     <MudDivider/>
+    @* <MudElement Class="justify-end d-flex gap-4 pa-2"> *@
+    @*     @UpVotes <MudIcon Icon="@Icons.Material.Filled.ThumbUp" Style="font-size: 1.5rem;"/> *@
+    @*     @DownVotes <MudIcon Icon="@Icons.Material.Filled.ThumbDown" Style="font-size: 1.5rem;"/> *@
+    @* </MudElement> *@
     <MudElement Class="justify-end d-flex gap-4 pa-2">
-        @UpVotes <MudIcon Icon="@Icons.Material.Filled.ThumbUp" Style="font-size: 1.5rem;"/>
-        @DownVotes <MudIcon Icon="@Icons.Material.Filled.ThumbDown" Style="font-size: 1.5rem;"/>
+        Click to read more... <MudIcon Icon="@Icons.Material.Filled.More" Style="font-size: 1.5rem;"/>
     </MudElement>
 </MudPaper>
 
@@ -27,6 +30,5 @@
 
     [Parameter]
     public int DownVotes { get; set; }
-
 
 }

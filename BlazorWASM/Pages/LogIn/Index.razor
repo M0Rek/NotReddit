@@ -18,7 +18,7 @@
         </MudContainer>
     </NotAuthorized>
     <Authorized>
-        <MudText>Welcome, @context.User.Identity.Name</MudText>
+        <MudText>Welcome, @context.User.Identity?.Name</MudText>
     </Authorized>
 </AuthorizeView>
 

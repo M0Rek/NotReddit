@@ -19,7 +19,7 @@
                 <MudIconButton OnClick="@Login" Icon="@Icons.Material.Filled.Login" Color="Color.Inherit" Edge="Edge.End"/>
             </NotAuthorized>
             <Authorized>
-                <MudText> Logged in as: @context.User.Identity.Name</MudText>
+                <MudText> Logged in as: @context.User.Identity?.Name</MudText>
                 <MudIconButton OnClick="@Logout" Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Edge="Edge.End"/>
             </Authorized>
         </AuthorizeView>

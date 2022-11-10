@@ -9,7 +9,7 @@
 
 
 <MudPaper Class="pa-7">
-    @if (createPostMode)
+    @if (_createPostMode)
     {
         <AuthorizeView>
             <NotAuthorized>
@@ -17,8 +17,8 @@
             </NotAuthorized>
             <Authorized>
                 <MudText Typo="Typo.h4">Create new post here:</MudText>
-                <MudTextField Variant="Variant.Filled" Label="Title" @bind-Value="title"/>
-                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="content" Lines="10"/>
+                <MudTextField Variant="Variant.Filled" Label="Title" @bind-Value="_title"/>
+                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="_content" Lines="10"/>
                 <MudDivider Class="ma-4"/>
                 <MudButton Variant="Variant.Filled" OnClick="CreatePost">Create Post</MudButton>
             </Authorized>
@@ -26,13 +26,13 @@
     }
     else
     {
-        <MudButton Color="Color.Tertiary" OnClick="@(() => createPostMode = true)">Create new Post</MudButton>
+        <MudButton Color="Color.Tertiary" OnClick="@(() => _createPostMode = true)">Create new Post</MudButton>
     }
 </MudPaper>
 @code {
-    private string title;
-    private string content;
-    private bool createPostMode = false;
+    private string _title = String.Empty;
+    private string _content = String.Empty;
+    private bool _createPostMode = false;
     
     [Parameter]
     public Action? PostCreated { get; set; }
@@ -42,8 +42,8 @@
     {
         await PostService.CreateAsync(new PostCreationRequestDto
         {
-            Title = title,
-            Content = content,
+            Title = _title,
+            Content = _content,
         });
         PostCreated?.Invoke();
         Snackbar.Add("Post added.", Severity.Success);
@@ -52,9 +52,9 @@
 
     private void ResetInputs()
     {
-        createPostMode = false;
-        title = "";
-        content = "";
+        _createPostMode = false;
+        _title = "";
+        _content = "";
         StateHasChanged();
     }
     

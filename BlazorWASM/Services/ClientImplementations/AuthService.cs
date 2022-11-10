@@ -11,8 +11,8 @@ public class AuthService : IAuthService
     private readonly System.Net.Http.HttpClient _client;
     public static string? Jwt { get; private set; } = "";
 
-    public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
-    
+    public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; } = null!;
+
 
     public AuthService(System.Net.Http.HttpClient client)
     {

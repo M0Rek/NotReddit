@@ -4,16 +4,23 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavManager
 
-    <AuthorizeView>
-        <NotAuthorized>
-            <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Email"></MudTextField>
-            <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
-            <MudButton Variant="Variant.Filled" OnClick="LoginAsync">Button</MudButton>
-        </NotAuthorized>
-        <Authorized>
-            <MudText>Welcome, @context.User.Identity.Name</MudText>
-        </Authorized>
-    </AuthorizeView>
+<PageTitle>Log in to NOT Reddit</PageTitle>
+<MudText Typo="Typo.h5" Align="Align.Center">Log in</MudText>
+<AuthorizeView>
+    <NotAuthorized>
+        <MudContainer MaxWidth="MaxWidth.Small">
+            <MudPaper Class="pa-7">
+                <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
+                <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+                <MudButton Variant="Variant.Filled" OnClick="LoginAsync">Log in</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="@(() => NavManager.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+            </MudPaper>
+        </MudContainer>
+    </NotAuthorized>
+    <Authorized>
+        <MudText>Welcome, @context.User.Identity.Name</MudText>
+    </Authorized>
+</AuthorizeView>
 
 @code {
     private string _username = "";

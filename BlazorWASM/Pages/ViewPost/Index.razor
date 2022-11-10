@@ -3,6 +3,7 @@
 @using IPostService = BlazorWASM.Services.ClientInterfaces.IPostService
 @inject IPostService PostService
 
+<PageTitle>@Post?.Title ?? Post on NOT reddit</PageTitle>
 <MudContainer MaxWidth="MaxWidth.Medium">
 <PostComponent Post="@Post"></PostComponent>
 </MudContainer>

@@ -5,14 +5,19 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavManager
 
-<h3>Register</h3>
+<MudText Typo="Typo.h5" Align="Align.Center">Create an account</MudText>
 
-<MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
-<MudTextField @bind-Value="_email" InputType="InputType.Email" Label="Email"></MudTextField>
-<MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
-<MudTextField @bind-Value="_retyped" InputType="InputType.Password" Label="Retype password"></MudTextField>
-
-<MudButton Variant="Variant.Filled" OnClick="RegisterAsync">Button</MudButton>
+<PageTitle>Create new account on NOT Reddit</PageTitle>
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Class="pa-7">
+        <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
+        <MudTextField @bind-Value="_email" InputType="InputType.Email" Label="Email"></MudTextField>
+        <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+        <MudTextField @bind-Value="_retyped" InputType="InputType.Password" Label="Retype password"></MudTextField>
+        <MudButton Variant="Variant.Filled" OnClick="RegisterAsync" Color="Color.Success">Register</MudButton>
+        <MudButton Variant="Variant.Filled" OnClick="@(() => NavManager.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+    </MudPaper>
+</MudContainer>
 
 
 
@@ -21,10 +26,16 @@
     private string _password = "";
     private string _retyped = "";
     private string _username = "";
-    
+
     private async Task RegisterAsync()
     {
-        try
+        if (_password != _retyped)
+        {
+            Snackbar.Add("Retyped password does not match.", Severity.Error);
+            return;
+        }
+
+            try
         {
             await AuthService.RegisterAsync(new UserCreationDto
             {
@@ -40,4 +51,5 @@
             Snackbar.Add(e.Message, Severity.Error);
         }
     }
+
 }

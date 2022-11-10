@@ -1,6 +1,8 @@
 @using BlazorWASM.Services.ClientInterfaces
 @using Domain.DTOs
 @inject ICommentService CommentService
+@inject ISnackbar Snackbar 
+
 
 <MudPaper Elevation="0" Class="pa-7">
     @if (createCommentMode)
@@ -26,27 +28,23 @@
     private string content;
     private bool createCommentMode = false;
     
-    
-    [CascadingParameter]
-    public Task<AuthenticationState> AuthState { get; set; } = null!;
-
     [Parameter]
     public Action? CommentCreated { get; set; }
 
     [Parameter]
-    public int CommentedOn { get; set; }
+    public int? CommentedOn { get; set; }
 
 
     private async void CreateComment()
     {
-        var state = await AuthState;
-
-        await CommentService.CreateAsync(new CommentCreationRequestDto
-        {
-            CommentedOnId = CommentedOn,
-            Content = content,
-        });
+        if (CommentedOn != null)
+            await CommentService.CreateAsync(new CommentCreationRequestDto
+            {
+                CommentedOnId = CommentedOn.Value,
+                Content = content,
+            });
         CommentCreated?.Invoke();
+        Snackbar.Add("Comment added", Severity.Success);
         ResetInputs();
     }
 
@@ -54,6 +52,7 @@
     {
         createCommentMode = false;
         content = "";
+        StateHasChanged();
     }
     
 }

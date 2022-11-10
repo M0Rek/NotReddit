@@ -5,6 +5,8 @@
 @inject IPostService PostService
 @inject AuthenticationStateProvider _stateProvider;
 @inject NavigationManager NavManager
+@inject ISnackbar Snackbar 
+
 
 <MudPaper Class="pa-7">
     @if (createPostMode)
@@ -32,23 +34,19 @@
     private string content;
     private bool createPostMode = false;
     
-    [CascadingParameter]
-    public Task<AuthenticationState> AuthState { get; set; } = null!;
-
     [Parameter]
     public Action? PostCreated { get; set; }
 
 
     private async void CreatePost()
     {
-        var state = await AuthState;
-
         await PostService.CreateAsync(new PostCreationRequestDto
         {
             Title = title,
             Content = content,
         });
         PostCreated?.Invoke();
+        Snackbar.Add("Post added.", Severity.Success);
         ResetInputs();
     }
 
@@ -57,6 +55,7 @@
         createPostMode = false;
         title = "";
         content = "";
+        StateHasChanged();
     }
     
 }

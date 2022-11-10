@@ -49,6 +49,14 @@
             Content = content,
         });
         PostCreated?.Invoke();
+        ResetInputs();
+    }
+
+    private void ResetInputs()
+    {
+        createPostMode = false;
+        title = "";
+        content = "";
     }
     
 }

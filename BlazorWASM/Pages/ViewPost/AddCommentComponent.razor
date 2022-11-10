@@ -1,0 +1,59 @@
+@using BlazorWASM.Services.ClientInterfaces
+@using Domain.DTOs
+@inject ICommentService CommentService
+
+<MudPaper Elevation="0" Class="pa-7">
+    @if (createCommentMode)
+    {
+        <AuthorizeView>
+            <NotAuthorized>
+                <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h6">You need to be logged in to add comments.</MudText>
+            </NotAuthorized>
+            <Authorized>
+                <MudText Typo="Typo.h6">Create new comment here:</MudText>
+                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="content" Lines="10"/>
+                <MudDivider Class="ma-4"/>
+                <MudButton Variant="Variant.Filled" OnClick="CreateComment">Create Comment</MudButton>
+            </Authorized>
+        </AuthorizeView>
+    }
+    else
+    {
+        <MudButton Color="Color.Tertiary" OnClick="@(() => createCommentMode = true)">Create new Comment</MudButton>
+    }
+</MudPaper>
+@code {
+    private string content;
+    private bool createCommentMode = false;
+    
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    [Parameter]
+    public Action? CommentCreated { get; set; }
+
+    [Parameter]
+    public int CommentedOn { get; set; }
+
+
+    private async void CreateComment()
+    {
+        var state = await AuthState;
+
+        await CommentService.CreateAsync(new CommentCreationRequestDto
+        {
+            CommentedOnId = CommentedOn,
+            Content = content,
+        });
+        CommentCreated?.Invoke();
+        ResetInputs();
+    }
+
+    private void ResetInputs()
+    {
+        createCommentMode = false;
+        content = "";
+    }
+    
+}

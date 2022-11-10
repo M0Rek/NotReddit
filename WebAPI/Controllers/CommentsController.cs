@@ -12,20 +12,26 @@ namespace WebAPI.Controllers;
 public class CommentsController : ControllerBase
 {
     private readonly ICommentLogic _commentLogic;
+    private readonly IAuthLogic _authLogic;
 
-
-    public CommentsController(ICommentLogic commentLogic)
+    public CommentsController(ICommentLogic commentLogic, IAuthLogic authLogic)
     {
         _commentLogic = commentLogic;
+        _authLogic = authLogic;
     }
-    
-    
+
+
     [HttpPost]
-    public async Task<ActionResult<Comment>> CreateAsync(CommentCreationDto dto)
+    public async Task<ActionResult<Comment>> CreateAsync(CommentCreationRequestDto dto)
     {
         try
         {
-            Comment comment = await _commentLogic.CreateAsync(dto);
+            var  userId= User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
+
+            var originalPoster = await _authLogic.GetByIdAsync(Int32.Parse(userId ?? throw new InvalidOperationException()));
+
+            
+            Comment comment = await _commentLogic.CreateAsync(new CommentCreationDto(originalPoster,dto.CommentedOnId,dto.Content));
             return Created($"/comments/{comment.Id}", comment);
         }
         catch (Exception e)

@@ -6,7 +6,10 @@
 
 
 <MudStack Spacing="5">
-    <AddCommentComponent/>
+    @if (PostId != null)
+    {
+        <AddCommentComponent CommentCreated="CommentCreated" CommentedOn="@PostId.Value"/>
+    }
     @if (_comments.Count > 0)
     {
         @foreach (var comment in _comments)
@@ -24,7 +27,15 @@
 @code {
 
     [Parameter]
-    public int? PostId { get; set; }
+    public int? PostId {
+        get { return _postId; }
+        set
+        {
+            if (value != null) _postId = value.Value;
+            Task.Run(RenderComments);
+        }}
+
+    private int _postId;
 
     private List<Comment> _comments = new();
 
@@ -33,10 +44,18 @@
         await RenderComments();
     }
 
+    private async void CommentCreated()
+    {
+        await RenderComments();
+    }
+
     public async Task RenderComments()
     {
         if (PostId == null)
+        {
+            Console.WriteLine("Thats why");
             return;
+        }
         
         var enumerable = await CommentService.GetByPostIdAsync(PostId.Value);
         _comments = enumerable.ToList();

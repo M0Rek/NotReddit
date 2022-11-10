@@ -1,0 +1,36 @@
+@page "/Login"
+@using IAuthService = BlazorWASM.Services.ClientInterfaces.IAuthService
+@inject ISnackbar Snackbar
+@inject IAuthService AuthService
+@inject NavigationManager NavManager
+
+    <AuthorizeView>
+        <NotAuthorized>
+            <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Email"></MudTextField>
+            <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+            <MudButton Variant="Variant.Filled" OnClick="LoginAsync">Button</MudButton>
+        </NotAuthorized>
+        <Authorized>
+            <MudText>Welcome, @context.User.Identity.Name</MudText>
+        </Authorized>
+    </AuthorizeView>
+
+@code {
+    private string _username = "";
+    private string _password = "";
+
+    private async Task LoginAsync()
+    {
+        try
+        {
+            await AuthService.LoginAsync(_username, _password);
+            NavManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            Snackbar.Add(e.Message, Severity.Error);
+        }
+    }
+
+}

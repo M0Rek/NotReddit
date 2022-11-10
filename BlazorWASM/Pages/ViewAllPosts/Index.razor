@@ -1,0 +1,23 @@
+﻿@page "/"
+@using MudBlazor
+
+<PageTitle>Not Reddit</PageTitle>
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-10">
+    <MudStack Spacing="8">
+        <AddPostComponent PostCreated="RefreshPosts"/>
+        <PostFeedComponent @ref="_postFeed"></PostFeedComponent>
+    </MudStack>
+</MudContainer>
+
+
+@code {
+
+    PostFeedComponent? _postFeed;
+
+    private void RefreshPosts()
+    {
+        _postFeed?.RenderPosts();
+    }
+
+
+}

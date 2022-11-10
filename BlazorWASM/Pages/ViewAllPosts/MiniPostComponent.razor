@@ -1,0 +1,32 @@
+@using System.Globalization
+
+
+<MudPaper Class="pa-7 cursor-pointer" Width="100%">
+    <MudContainer Class="d-flex justify-space-between">
+        <MudText Align="Align.Left" Inline="true" Typo="Typo.h4">@Title</MudText>
+        <MudText Align="Align.Right" Inline="true" Typo="Typo.caption">@PostCreatedDate.ToShortDateString()</MudText>
+    </MudContainer>
+    <MudDivider/>
+    <MudElement Class="justify-end d-flex gap-4 pa-2">
+        @UpVotes <MudIcon Icon="@Icons.Material.Filled.ThumbUp" Style="font-size: 1.5rem;"/>
+        @DownVotes <MudIcon Icon="@Icons.Material.Filled.ThumbDown" Style="font-size: 1.5rem;"/>
+    </MudElement>
+</MudPaper>
+
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = String.Empty;
+
+    [Parameter]
+    public DateTime PostCreatedDate { get; set; }
+
+    [Parameter]
+    public int UpVotes { get; set; }
+
+    [Parameter]
+    public int DownVotes { get; set; }
+
+
+}

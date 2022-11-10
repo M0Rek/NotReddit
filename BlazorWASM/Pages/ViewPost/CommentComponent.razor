@@ -1,0 +1,17 @@
+@using Domain.Models
+
+<MudPaper Elevation="3" Class="pa-7">
+    <MudContainer Class="d-flex justify-space-between">
+        <MudText Align="Align.Left" Inline="true" Typo="Typo.caption"> created by @Comment?.OriginalPoster.Username</MudText>
+        <MudText Align="Align.Right" Inline="true" Typo="Typo.caption">@Comment?.PublishedDateTime.ToShortDateString()</MudText>
+    </MudContainer>
+    <MudText Typo="Typo.body1">@Comment?.Content</MudText>
+</MudPaper>
+
+
+@code {
+
+    [Parameter]
+    public Comment? Comment { get; set; }
+
+}

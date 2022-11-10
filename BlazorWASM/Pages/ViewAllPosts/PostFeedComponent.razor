@@ -1,0 +1,46 @@
+@using Application.Logic
+@using Domain.Models
+@inject IPostService PostService 
+@using IPostService = BlazorWASM.Services.ClientInterfaces.IPostService
+@inject NavigationManager NavManager
+
+
+<MudStack Spacing="5">
+@foreach(var post in _posts)
+{
+    <MudPaper @onclick="() => NavigateToPost(post.Id)" Style="z-index: 1">
+        <MiniPostComponent Title="@post.Title" PostCreatedDate="post.PublishedDateTime" UpVotes="post.UpVotedBy.Count" DownVotes="post.DownVotedBy.Count"/>
+    </MudPaper>
+}
+</MudStack>
+
+
+
+
+
+@code {
+
+
+    private List<Post> _posts = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RenderPosts();
+    }
+
+    private void NavigateToPost(int id)
+    {
+        NavManager.NavigateTo($"/Post/{id}");
+    }
+
+    public async Task RenderPosts()
+    {
+        var enumerable = await PostService.GetAsync();
+        _posts = enumerable.ToList();
+        _posts.Sort((x, y) => DateTime.Compare(y.PublishedDateTime, x.PublishedDateTime));
+
+        StateHasChanged();
+    }
+
+
+}

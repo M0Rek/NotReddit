@@ -1,0 +1,44 @@
+@using BlazorWASM.Services.ClientImplementations
+@using BlazorWASM.Services.ClientInterfaces
+@using Domain.Models
+@inject ICommentService CommentService
+
+<MudStack Spacing="5">
+@if(_comments.Count > 0) {
+    @foreach (var comment in _comments)
+    {
+        <CommentComponent Comment="@comment"/>
+    }
+}
+else
+{
+    <MudText Typo="Typo.h5" Color="Color.Info" Class="ma-4" Align="Align.Center">Wow, such empty. :(</MudText>
+}
+</MudStack>
+
+
+@code {
+
+    [Parameter]
+    public int? PostId { get; set; }
+
+    private List<Comment> _comments = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RenderComments();
+    }
+
+    public async Task RenderComments()
+    {
+        if (PostId == null)
+            return;
+        
+        var enumerable = await CommentService.GetByPostIdAsync(PostId.Value);
+        _comments = enumerable.ToList();
+        _comments.Sort((x, y) => DateTime.Compare(y.PublishedDateTime, x.PublishedDateTime));
+
+        StateHasChanged();
+    }
+
+}

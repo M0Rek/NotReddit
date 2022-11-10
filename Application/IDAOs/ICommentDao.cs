@@ -5,6 +5,6 @@ namespace Application.DaoInterfaces;
 public interface ICommentDao
 {
     Task<Comment> CreateAsync(Comment comment);
-    Task<Comment?> GetByIdAsync(int id);
+    Task<IEnumerable<Comment>> GetByPostIdAsync(int id);
 
 }

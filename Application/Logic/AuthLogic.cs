@@ -42,7 +42,6 @@ public class AuthLogic : IAuthLogic
             Username = dto.Username,
             Email = dto.Email,
             Password = dto.Password,
-            Role = dto.Role
         };
 
         User created = await _userDao.CreateAsync(toCreate);
@@ -67,7 +66,16 @@ public class AuthLogic : IAuthLogic
         
         if (userName.Length > 15)
             throw new Exception("Username must be less than 16 characters long");
-        
-       
+    }
+
+    public async Task<User> GetByIdAsync(int id)
+    {
+        User? existingUser = await _userDao.GetByIdAsync(id);
+        if (existingUser == null)
+        {
+            throw new Exception("User not found");
+        }
+
+        return existingUser;
     }
 }

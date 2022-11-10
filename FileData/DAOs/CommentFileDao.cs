@@ -28,10 +28,9 @@ public class CommentFileDao : ICommentDao
         return Task.FromResult(comment);
     }
 
-    public Task<Comment?> GetByIdAsync(int id)
+    public Task<IEnumerable<Comment>> GetByPostIdAsync(int id)
     {
-        Comment? existing = context.Comments.FirstOrDefault(c => id == c.Id);
-
+        var existing = context.Comments.Where(c => id == c.CommentedOnId);
         return Task.FromResult(existing);
     }
 }

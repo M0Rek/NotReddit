@@ -1,0 +1,43 @@
+@page "/Register"
+@using Domain.DTOs
+@using IAuthService = BlazorWASM.Services.ClientInterfaces.IAuthService
+@inject ISnackbar Snackbar
+@inject IAuthService AuthService
+@inject NavigationManager NavManager
+
+<h3>Register</h3>
+
+<MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
+<MudTextField @bind-Value="_email" InputType="InputType.Email" Label="Email"></MudTextField>
+<MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+<MudTextField @bind-Value="_retyped" InputType="InputType.Password" Label="Retype password"></MudTextField>
+
+<MudButton Variant="Variant.Filled" OnClick="RegisterAsync">Button</MudButton>
+
+
+
+@code {
+    private string _email = "";
+    private string _password = "";
+    private string _retyped = "";
+    private string _username = "";
+    
+    private async Task RegisterAsync()
+    {
+        try
+        {
+            await AuthService.RegisterAsync(new UserCreationDto
+            {
+                Username = _username,
+                Email = _email,
+                Password = _password
+            });
+            NavManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            Snackbar.Add(e.Message, Severity.Error);
+        }
+    }
+}

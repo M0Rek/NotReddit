@@ -1,17 +1,18 @@
+using Domain.Models;
+
 namespace Domain.DTOs;
 
 public class CommentCreationDto
 {
-    public int OriginalPosterId { get; set; }
+    public User OriginalPoster { get; set; }
     public int CommentedOnId { get; set; }
-    public bool IsParentPost { get; set; }
     public string Content { get; set; }
 
-    public CommentCreationDto(int originalPosterId, int commentedOnId, bool isParentPost, string content)
+
+    public CommentCreationDto(User originalPoster, int commentedOnId, string content)
     {
-        OriginalPosterId = originalPosterId;
+        OriginalPoster = originalPoster;
         CommentedOnId = commentedOnId;
-        IsParentPost = isParentPost;
         Content = content;
     }
 }

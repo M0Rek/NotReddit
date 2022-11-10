@@ -1,0 +1,54 @@
+@using BlazorWASM.Services.ClientInterfaces
+@using Domain.DTOs
+@using Domain.Models
+@using Microsoft.VisualBasic
+@inject IPostService PostService
+@inject AuthenticationStateProvider _stateProvider;
+@inject NavigationManager NavManager
+
+<MudPaper Class="pa-7">
+    @if (createPostMode)
+    {
+        <AuthorizeView>
+            <NotAuthorized>
+                <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h4">You need to be logged in to add posts.</MudText>
+            </NotAuthorized>
+            <Authorized>
+                <MudText Typo="Typo.h4">Create new post here:</MudText>
+                <MudTextField Variant="Variant.Filled" Label="Title" @bind-Value="title"/>
+                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="content" Lines="10"/>
+                <MudDivider Class="ma-4"/>
+                <MudButton Variant="Variant.Filled" OnClick="CreatePost">Create Post</MudButton>
+            </Authorized>
+        </AuthorizeView>
+    }
+    else
+    {
+        <MudButton Color="Color.Tertiary" OnClick="@(() => createPostMode = true)">Create new Post</MudButton>
+    }
+</MudPaper>
+@code {
+    private string title;
+    private string content;
+    private bool createPostMode = false;
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    [Parameter]
+    public Action? PostCreated { get; set; }
+
+
+    private async void CreatePost()
+    {
+        var state = await AuthState;
+
+        await PostService.CreateAsync(new PostCreationRequestDto
+        {
+            Title = title,
+            Content = content,
+        });
+        PostCreated?.Invoke();
+    }
+    
+}

@@ -1,0 +1,23 @@
+@using Domain.Models
+
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <MudPaper Class="ma-10 pa-7" Elevation="2" MinWidth="400px">
+        <MudContainer Class="d-flex justify-space-between">
+            <MudText Align="Align.Left" Inline="true" Typo="Typo.caption"> created by @Post?.OriginalPoster.Username</MudText>
+            <MudText Align="Align.Right" Inline="true" Typo="Typo.caption">@Post?.PublishedDateTime.ToShortDateString()</MudText>
+        </MudContainer>
+        <MudText Align="Align.Center" Inline="true" Typo="Typo.h4">@Post?.Title</MudText>
+        <MudDivider/>
+        <MudText Class="ma-5" Typo="Typo.body1">@Post?.Content</MudText>
+        <MudDivider/>
+        <CommentSectionComponent PostId="@Post?.Id" />
+    </MudPaper>
+</MudContainer>
+
+
+@code {
+
+    [Parameter]
+    public Post? Post { get; set; }
+
+}

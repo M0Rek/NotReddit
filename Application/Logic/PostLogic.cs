@@ -19,10 +19,10 @@ public class PostLogic : IPostLogic
 
     public async Task<Post> CreateAsync(PostCreationDto dto)
     {
-        User? user = await _userDao.GetByIdAsync(dto.OriginalPosterId);
+        User? user = await _userDao.GetByIdAsync(dto.OriginalPoster.Id);
         if (user == null)
         {
-            throw new Exception($"User with id {dto.OriginalPosterId} was not found");
+            throw new Exception($"User with id {dto.OriginalPoster.Id} was not found");
         }
 
         ValidateData(dto);
@@ -30,7 +30,7 @@ public class PostLogic : IPostLogic
         {
             Title = dto.Title,
             Content = dto.Content,
-            OriginalPosterId = dto.OriginalPosterId,
+            OriginalPoster = dto.OriginalPoster,
         };
 
        return await _postDao.CreateAsync(toCreate);
@@ -52,8 +52,8 @@ public class PostLogic : IPostLogic
         return await _postDao.GetAsync();
     }
 
-    public Task<Post?> GetByIdAsync(int id)
+    public async Task<Post?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _postDao.GetByIdAsync(id);
     }
 }

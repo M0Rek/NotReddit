@@ -1,0 +1,24 @@
+@page "/Post/{Id:int}"
+@using Domain.Models
+@using IPostService = BlazorWASM.Services.ClientInterfaces.IPostService
+@inject IPostService PostService
+
+<MudContainer MaxWidth="MaxWidth.Medium">
+<PostComponent Post="@Post"></PostComponent>
+</MudContainer>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    
+    Post? Post { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Post = await PostService.GetByIdAsync(Id);
+    }
+
+
+}

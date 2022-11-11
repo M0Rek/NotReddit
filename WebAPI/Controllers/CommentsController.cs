@@ -41,12 +41,12 @@ public class CommentsController : ControllerBase
         }
     }
     
-    [HttpGet("{id:int}") , AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<Post>>> GetByPostIdAsync(int id)
+    [HttpGet("{postId:int}") , AllowAnonymous]
+    public async Task<ActionResult<IEnumerable<Post>>> GetByPostIdAsync(int postId)
     {
         try
         {
-            var comments = await _commentLogic.GetByPostIdAsync(id);
+            var comments = await _commentLogic.GetByPostIdAsync(postId);
 
             return Ok(comments);
         }

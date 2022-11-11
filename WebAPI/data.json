@@ -195,6 +195,20 @@
       "PublishedDateTime": "2022-11-11T08:57:55.3349238+01:00",
       "UpVotedBy": [],
       "DownVotedBy": []
+    },
+    {
+      "Id": 7,
+      "OriginalPoster": {
+        "Id": 3,
+        "Username": "Morek",
+        "Email": "morek@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 6,
+      "Content": "Nothing is random.",
+      "PublishedDateTime": "2022-11-11T10:00:19.2077929+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
     }
   ]
 }

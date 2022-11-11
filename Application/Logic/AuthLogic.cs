@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Application.DaoInterfaces;
+using Application.IDAOs;
+using Application.ILogic;
 using Domain.DTOs;
 using Domain.Models;
 

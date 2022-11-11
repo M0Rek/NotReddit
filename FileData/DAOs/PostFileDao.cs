@@ -1,4 +1,4 @@
-using Application.DaoInterfaces;
+using Application.IDAOs;
 using Domain.Models;
 
 namespace FileData.DAOs;
@@ -11,7 +11,7 @@ public class PostFileDao : IPostDao
     {
         this.context = context;
     }
-    
+
     public Task<Post> CreateAsync(Post post)
     {
         int postId = 1;

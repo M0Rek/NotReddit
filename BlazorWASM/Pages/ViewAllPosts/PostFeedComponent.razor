@@ -6,16 +6,13 @@
 
 
 <MudStack Spacing="5">
-@foreach(var post in _posts)
-{
-    <MudPaper @onclick="() => NavigateToPost(post.Id)" Style="z-index: 1">
-        <MiniPostComponent Title="@post.Title" PostCreatedDate="post.PublishedDateTime" UpVotes="post.UpVotedBy.Count" DownVotes="post.DownVotedBy.Count"/>
-    </MudPaper>
-}
+    @foreach (var post in _posts)
+    {
+        <MudPaper @onclick="() => NavigateToPost(post.Id)" Style="z-index: 1">
+            <MiniPostComponent Title="@post.Title" PostCreatedDate="post.PublishedDateTime" UpVotes="post.UpVotedBy.Count" DownVotes="post.DownVotedBy.Count"/>
+        </MudPaper>
+    }
 </MudStack>
-
-
-
 
 
 @code {

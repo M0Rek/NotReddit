@@ -1,5 +1,6 @@
 using System.Text;
-using Application.DaoInterfaces;
+using Application.IDAOs;
+using Application.ILogic;
 using Application.Logic;
 using FileData;
 using FileData.DAOs;

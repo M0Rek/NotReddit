@@ -17,7 +17,7 @@ public class FileContext
             return dataContainer!.Users;
         }
     }
-    
+
     public ICollection<Post> Posts
     {
         get
@@ -26,7 +26,7 @@ public class FileContext
             return dataContainer!.Posts;
         }
     }
-    
+
     public ICollection<Comment> Comments
     {
         get
@@ -58,10 +58,8 @@ public class FileContext
     public void SaveChanges()
     {
         string serialized = JsonSerializer.Serialize(dataContainer, new JsonSerializerOptions
-            {WriteIndented = true});
+            { WriteIndented = true });
         File.WriteAllText(filePath, serialized);
         dataContainer = null;
     }
-    
-    
 }

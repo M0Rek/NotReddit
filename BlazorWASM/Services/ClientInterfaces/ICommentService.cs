@@ -7,5 +7,4 @@ public interface ICommentService
 {
     Task<Comment> CreateAsync(CommentCreationRequestDto dto);
     Task<IEnumerable<Comment>> GetByPostIdAsync(int id);
-    
 }

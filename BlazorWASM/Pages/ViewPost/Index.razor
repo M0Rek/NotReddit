@@ -5,7 +5,7 @@
 
 <PageTitle>@Post?.Title ?? Post on NOT reddit</PageTitle>
 <MudContainer MaxWidth="MaxWidth.Medium">
-<PostComponent Post="@Post"></PostComponent>
+    <PostComponent Post="@Post"></PostComponent>
 </MudContainer>
 
 @code {
@@ -13,9 +13,9 @@
     [Parameter]
     public int Id { get; set; }
 
-    
+
     Post? Post { get; set; }
-    
+
     protected override async Task OnInitializedAsync()
     {
         Post = await PostService.GetByIdAsync(Id);

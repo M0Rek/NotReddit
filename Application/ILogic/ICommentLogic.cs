@@ -1,7 +1,7 @@
 using Domain.DTOs;
 using Domain.Models;
 
-namespace Application.Logic;
+namespace Application.ILogic;
 
 public interface ICommentLogic
 {

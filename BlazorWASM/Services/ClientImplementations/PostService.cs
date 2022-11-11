@@ -16,7 +16,7 @@ public class PostService : IPostService
         _client = client;
     }
 
-    public async Task<Post>  CreateAsync(PostCreationRequestDto dto)
+    public async Task<Post> CreateAsync(PostCreationRequestDto dto)
     {
         string postAsJson = JsonSerializer.Serialize(dto);
 
@@ -53,7 +53,6 @@ public class PostService : IPostService
     }
 
 
-
     public async Task<Post?> GetByIdAsync(int id)
     {
         var response = await _client.GetAsync($"Posts/{id}");
@@ -70,5 +69,4 @@ public class PostService : IPostService
         })!;
         return created;
     }
-    
 }

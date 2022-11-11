@@ -24,10 +24,11 @@
         <MudButton Color="Color.Tertiary" OnClick="@(() => _createCommentMode = true)">Create new Comment</MudButton>
     }
 </MudPaper>
+
 @code {
     private string _content = String.Empty;
     private bool _createCommentMode = false;
-    
+
     [Parameter]
     public Action? CommentCreated { get; set; }
 
@@ -37,14 +38,13 @@
 
     private async void CreateComment()
     {
-        
         if (_content == String.Empty)
         {
             Snackbar.Add("Content cannot be empty!", Severity.Warning);
             return;
         }
-        
-        
+
+
         if (CommentedOn != null)
             await CommentService.CreateAsync(new CommentCreationRequestDto
             {
@@ -62,5 +62,5 @@
         _content = "";
         StateHasChanged();
     }
-    
+
 }

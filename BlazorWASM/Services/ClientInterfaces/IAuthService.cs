@@ -11,5 +11,4 @@ public interface IAuthService
     public Task<ClaimsPrincipal> GetAuthAsync();
 
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
-
 }

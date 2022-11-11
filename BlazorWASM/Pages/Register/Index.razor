@@ -20,7 +20,6 @@
 </MudContainer>
 
 
-
 @code {
     private string _email = "";
     private string _password = "";
@@ -35,7 +34,7 @@
             return;
         }
 
-            try
+        try
         {
             await AuthService.RegisterAsync(new UserCreationDto
             {
@@ -43,7 +42,7 @@
                 Email = _email,
                 Password = _password
             });
-            
+
             await AuthService.LoginAsync(_username, _password);
 
             NavManager.NavigateTo("/");

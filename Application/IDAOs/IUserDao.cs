@@ -1,8 +1,6 @@
-using Domain;
-using Domain.DTOs;
 using Domain.Models;
 
-namespace Application.DaoInterfaces;
+namespace Application.IDAOs;
 
 public interface IUserDao
 {

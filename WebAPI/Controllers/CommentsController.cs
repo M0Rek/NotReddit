@@ -1,3 +1,4 @@
+using Application.ILogic;
 using Application.Logic;
 using Domain.DTOs;
 using Domain.Models;
@@ -26,12 +27,14 @@ public class CommentsController : ControllerBase
     {
         try
         {
-            var  userId= User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
+            var userId = User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
 
-            var originalPoster = await _authLogic.GetByIdAsync(Int32.Parse(userId ?? throw new InvalidOperationException()));
+            var originalPoster =
+                await _authLogic.GetByIdAsync(Int32.Parse(userId ?? throw new InvalidOperationException()));
 
-            
-            Comment comment = await _commentLogic.CreateAsync(new CommentCreationDto(originalPoster,dto.CommentedOnId,dto.Content));
+
+            Comment comment =
+                await _commentLogic.CreateAsync(new CommentCreationDto(originalPoster, dto.CommentedOnId, dto.Content));
             return Created($"/comments/{comment.Id}", comment);
         }
         catch (Exception e)
@@ -40,8 +43,8 @@ public class CommentsController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
-    
-    [HttpGet("{postId:int}") , AllowAnonymous]
+
+    [HttpGet("{postId:int}"), AllowAnonymous]
     public async Task<ActionResult<IEnumerable<Post>>> GetByPostIdAsync(int postId)
     {
         try

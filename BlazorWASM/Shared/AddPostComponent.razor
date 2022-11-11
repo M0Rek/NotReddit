@@ -29,11 +29,12 @@
         <MudButton Color="Color.Tertiary" OnClick="@(() => _createPostMode = true)">Create new Post</MudButton>
     }
 </MudPaper>
+
 @code {
     private string _title = String.Empty;
     private string _content = String.Empty;
     private bool _createPostMode = false;
-    
+
     [Parameter]
     public Action? PostCreated { get; set; }
 
@@ -45,13 +46,13 @@
             Snackbar.Add("Title cannot be empty!", Severity.Warning);
             return;
         }
-        
+
         if (_content == String.Empty)
         {
             Snackbar.Add("Content cannot be empty!", Severity.Warning);
             return;
         }
-        
+
         await PostService.CreateAsync(new PostCreationRequestDto
         {
             Title = _title,
@@ -69,5 +70,5 @@
         _content = "";
         StateHasChanged();
     }
-    
+
 }

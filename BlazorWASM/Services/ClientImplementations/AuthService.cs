@@ -17,9 +17,8 @@ public class AuthService : IAuthService
     public AuthService(System.Net.Http.HttpClient client)
     {
         _client = client;
-        
     }
-    
+
     private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
     {
         string payload = jwt.Split('.')[1];
@@ -36,12 +35,13 @@ public class AuthService : IAuthService
         }
 
         IEnumerable<Claim> claims = ParseClaimsFromJwt(Jwt);
-    
+
         ClaimsIdentity identity = new(claims, "jwt");
 
         ClaimsPrincipal principal = new(identity);
         return principal;
     }
+
     private static byte[] ParseBase64WithoutPadding(string base64)
     {
         switch (base64.Length % 4)
@@ -56,7 +56,7 @@ public class AuthService : IAuthService
 
         return Convert.FromBase64String(base64);
     }
-    
+
     public async Task LoginAsync(string username, string password)
     {
         UserLoginDto userLoginDto = new()
@@ -70,7 +70,7 @@ public class AuthService : IAuthService
         HttpResponseMessage response = await _client.PostAsync("/Auth/login", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
-        
+
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(responseContent);
@@ -110,5 +110,4 @@ public class AuthService : IAuthService
         ClaimsPrincipal principal = CreateClaimsPrincipal();
         return Task.FromResult(principal);
     }
-    
 }

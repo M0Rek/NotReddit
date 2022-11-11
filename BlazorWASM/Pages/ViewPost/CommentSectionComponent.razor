@@ -4,7 +4,6 @@
 @inject ICommentService CommentService
 
 
-
 <MudStack Spacing="5">
     @if (PostId != null)
     {
@@ -27,13 +26,15 @@
 @code {
 
     [Parameter]
-    public int? PostId {
+    public int? PostId
+    {
         get { return _postId; }
         set
         {
             if (value != null) _postId = value.Value;
             Task.Run(RenderComments);
-        }}
+        }
+    }
 
     private int _postId;
 
@@ -55,7 +56,7 @@
         {
             return;
         }
-        
+
         var enumerable = await CommentService.GetByPostIdAsync(PostId.Value);
         _comments = enumerable.ToList();
         _comments.Sort((x, y) => DateTime.Compare(x.PublishedDateTime, y.PublishedDateTime));

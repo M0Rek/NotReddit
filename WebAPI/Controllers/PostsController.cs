@@ -66,7 +66,7 @@ public class PostsController : ControllerBase
     }
 
     [HttpGet("{id:int}"), AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<Post>>> GetByIdAsync(int id)
+    public async Task<ActionResult<Post>> GetByIdAsync(int id)
     {
         try
         {

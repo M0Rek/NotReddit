@@ -23,6 +23,24 @@
       "Username": "Selina",
       "Email": "selina@gmail.com",
       "Password": "123"
+    },
+    {
+      "Id": 5,
+      "Username": "New",
+      "Email": "new@interia.pl",
+      "Password": "123"
+    },
+    {
+      "Id": 6,
+      "Username": "Polak",
+      "Email": "polak@gmail.com",
+      "Password": "123"
+    },
+    {
+      "Id": 7,
+      "Username": "Borys",
+      "Email": "borys@gmail.com",
+      "Password": "123"
     }
   ],
   "Posts": [
@@ -107,6 +125,62 @@
       "Title": "Inline post here",
       "Content": "Thus is random",
       "PublishedDateTime": "2022-11-11T08:57:07.0303773+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 7,
+      "OriginalPoster": {
+        "Id": 5,
+        "Username": "New",
+        "Email": "new@interia.pl",
+        "Password": "123"
+      },
+      "Title": "I am new here.",
+      "Content": "Hello, does anyone play fortnite here? ",
+      "PublishedDateTime": "2022-11-11T14:23:01.7779783+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 8,
+      "OriginalPoster": {
+        "Id": 6,
+        "Username": "Polak",
+        "Email": "polak@gmail.com",
+        "Password": "123"
+      },
+      "Title": "Polak\u0027s post ",
+      "Content": "Some content\n\n",
+      "PublishedDateTime": "2022-11-11T14:41:40.3888091+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 9,
+      "OriginalPoster": {
+        "Id": 7,
+        "Username": "Borys",
+        "Email": "borys@gmail.com",
+        "Password": "123"
+      },
+      "Title": "sagdfasdfdf",
+      "Content": "asdfdafasdfas",
+      "PublishedDateTime": "2022-11-11T14:56:26.0697001+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 10,
+      "OriginalPoster": {
+        "Id": 7,
+        "Username": "Borys",
+        "Email": "borys@gmail.com",
+        "Password": "123"
+      },
+      "Title": "Thats a new post to test out a patch",
+      "Content": "Patch works!",
+      "PublishedDateTime": "2022-11-11T18:24:50.0338585+01:00",
       "UpVotedBy": [],
       "DownVotedBy": []
     }
@@ -207,6 +281,48 @@
       "CommentedOnId": 6,
       "Content": "Nothing is random.",
       "PublishedDateTime": "2022-11-11T10:00:19.2077929+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 8,
+      "OriginalPoster": {
+        "Id": 5,
+        "Username": "New",
+        "Email": "new@interia.pl",
+        "Password": "123"
+      },
+      "CommentedOnId": 7,
+      "Content": "Dm me if you do :)",
+      "PublishedDateTime": "2022-11-11T14:23:17.9506669+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 9,
+      "OriginalPoster": {
+        "Id": 7,
+        "Username": "Borys",
+        "Email": "borys@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 4,
+      "Content": "Good job Selina :)",
+      "PublishedDateTime": "2022-11-11T14:56:58.0961556+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 10,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 10,
+      "Content": "Cool.",
+      "PublishedDateTime": "2022-11-11T18:25:11.4487313+01:00",
       "UpVotedBy": [],
       "DownVotedBy": []
     }

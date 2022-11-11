@@ -17,6 +17,12 @@
       "Username": "Morek",
       "Email": "morek@gmail.com",
       "Password": "123"
+    },
+    {
+      "Id": 4,
+      "Username": "Selina",
+      "Email": "selina@gmail.com",
+      "Password": "123"
     }
   ],
   "Posts": [
@@ -61,6 +67,48 @@
       "PublishedDateTime": "2022-11-10T21:54:19.1198408+01:00",
       "UpVotedBy": [],
       "DownVotedBy": []
+    },
+    {
+      "Id": 4,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "Title": "This is my first post here :o",
+      "Content": "Hello :)",
+      "PublishedDateTime": "2022-11-11T08:22:41.1740485+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 5,
+      "OriginalPoster": {
+        "Id": 3,
+        "Username": "Morek",
+        "Email": "morek@gmail.com",
+        "Password": "123"
+      },
+      "Title": "Fancy new way to add posts!",
+      "Content": "Full screen, for extra convenience. Here some details:\n\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta, eros eu efficitur luctus, ante velit laoreet felis, in luctus orci risus a magna. Phasellus tempus posuere enim, vel rhoncus mi vehicula eget. Curabitur tincidunt euismod sapien vitae viverra. Fusce posuere purus est, vel cursus risus viverra id. Suspendisse id laoreet quam. In risus leo, vulputate et nisl sit amet, viverra egestas orci. Duis elementum odio vel aliquet sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus lobortis metus eu ligula convallis, sit amet blandit dui efficitur. Vestibulum posuere ante sed est consectetur, non bibendum dui iaculis. Proin porttitor elit sed lacinia viverra. Mauris tempor risus neque.\n\nUt varius, turpis eu vestibulum ultricies, diam magna accumsan enim, et tempus felis mauris in risus. Quisque suscipit nec diam at ornare. Donec vitae enim arcu. Duis ullamcorper lacus ultricies ex commodo aliquet. Ut in mollis ipsum. Fusce vehicula luctus semper. Vivamus ac justo lorem. Phasellus elementum sem euismod, volutpat justo sit amet, lobortis urna. Mauris imperdiet lorem a nibh tempor hendrerit quis eu dolor. Phasellus purus ex, tincidunt a nulla in, suscipit consectetur urna. Ut ultricies libero et turpis rutrum tempor. Sed sit amet iaculis diam.\n\nInteger ut arcu turpis. Suspendisse fermentum sagittis odio quis efficitur. Donec ac scelerisque mauris. In metus mi, tincidunt in ligula vel, molestie maximus elit. Aenean ac dapibus enim, tempus congue risus. Morbi et libero mi. Curabitur tristique erat id mauris pharetra, fringilla malesuada sem tincidunt. Nullam luctus ipsum risus, a tincidunt nisl pulvinar sed. Pellentesque arcu neque, tristique nec aliquam non, sollicitudin facilisis ex. Aliquam a lectus a nisl porta eleifend eget bibendum nisi. Nullam at purus malesuada lorem tincidunt lobortis vel vel felis. Curabitur consequat mi sit amet erat ultricies commodo at id lectus. Maecenas varius molestie magna, sit amet porta mi venenatis quis.\n\nVivamus in massa laoreet, sollicitudin purus at, pharetra magna. Nunc aliquet consectetur velit, quis vehicula tellus volutpat et. Morbi ac laoreet eros, congue tempor massa. Sed maximus enim ut malesuada tincidunt. Phasellus eleifend vehicula cursus. Donec in augue vel leo pharetra venenatis ut id magna. Vestibulum a egestas arcu. Praesent eget sapien sollicitudin, eleifend lacus et, lobortis tortor. In dapibus pretium vehicula.\n\nIn consectetur enim sed erat tristique, et dictum metus aliquam. Aliquam pretium risus at tincidunt euismod. Nunc cursus posuere semper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer et augue mattis, porta nisl non, semper odio. Phasellus faucibus faucibus nisl sit amet imperdiet. Pellentesque massa dolor, tempor dictum arcu id, lacinia tempor enim. ",
+      "PublishedDateTime": "2022-11-11T08:55:08.2209377+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 6,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "Title": "Inline post here",
+      "Content": "Thus is random",
+      "PublishedDateTime": "2022-11-11T08:57:07.0303773+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
     }
   ],
   "Comments": [
@@ -89,6 +137,62 @@
       "CommentedOnId": 3,
       "Content": "/s",
       "PublishedDateTime": "2022-11-10T21:54:37.1048859+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 3,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 4,
+      "Content": "This is me first comment wow",
+      "PublishedDateTime": "2022-11-11T08:22:59.6564545+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 4,
+      "OriginalPoster": {
+        "Id": 3,
+        "Username": "Morek",
+        "Email": "morek@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 4,
+      "Content": "Welcome to this new and improved social media \u003C3",
+      "PublishedDateTime": "2022-11-11T08:24:11.0714804+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 5,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 5,
+      "Content": "TL:DR?",
+      "PublishedDateTime": "2022-11-11T08:55:44.1978911+01:00",
+      "UpVotedBy": [],
+      "DownVotedBy": []
+    },
+    {
+      "Id": 6,
+      "OriginalPoster": {
+        "Id": 4,
+        "Username": "Selina",
+        "Email": "selina@gmail.com",
+        "Password": "123"
+      },
+      "CommentedOnId": 5,
+      "Content": "Not for you :)",
+      "PublishedDateTime": "2022-11-11T08:57:55.3349238+01:00",
       "UpVotedBy": [],
       "DownVotedBy": []
     }

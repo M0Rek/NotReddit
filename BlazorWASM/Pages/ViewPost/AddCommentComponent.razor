@@ -5,7 +5,7 @@
 
 
 <MudPaper Elevation="0" Class="pa-7">
-    @if (createCommentMode)
+    @if (_createCommentMode)
     {
         <AuthorizeView>
             <NotAuthorized>
@@ -13,7 +13,7 @@
             </NotAuthorized>
             <Authorized>
                 <MudText Typo="Typo.h6">Create new comment here:</MudText>
-                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="content" Lines="10"/>
+                <MudTextField Variant="Variant.Filled" Label="Content "@bind-Value="_content" Lines="10"/>
                 <MudDivider Class="ma-4"/>
                 <MudButton Variant="Variant.Filled" OnClick="CreateComment">Create Comment</MudButton>
             </Authorized>
@@ -21,12 +21,12 @@
     }
     else
     {
-        <MudButton Color="Color.Tertiary" OnClick="@(() => createCommentMode = true)">Create new Comment</MudButton>
+        <MudButton Color="Color.Tertiary" OnClick="@(() => _createCommentMode = true)">Create new Comment</MudButton>
     }
 </MudPaper>
 @code {
-    private string content;
-    private bool createCommentMode = false;
+    private string _content = String.Empty;
+    private bool _createCommentMode = false;
     
     [Parameter]
     public Action? CommentCreated { get; set; }
@@ -37,11 +37,19 @@
 
     private async void CreateComment()
     {
+        
+        if (_content == String.Empty)
+        {
+            Snackbar.Add("Content cannot be empty!", Severity.Warning);
+            return;
+        }
+        
+        
         if (CommentedOn != null)
             await CommentService.CreateAsync(new CommentCreationRequestDto
             {
                 CommentedOnId = CommentedOn.Value,
-                Content = content,
+                Content = _content,
             });
         CommentCreated?.Invoke();
         Snackbar.Add("Comment added", Severity.Success);
@@ -50,8 +58,8 @@
 
     private void ResetInputs()
     {
-        createCommentMode = false;
-        content = "";
+        _createCommentMode = false;
+        _content = "";
         StateHasChanged();
     }
     

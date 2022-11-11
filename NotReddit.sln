@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{10DAD74A-A912-417D-818D-58677EAEA41A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{628ABB75-6ED5-44AD-B829-3EC0455A9764}"
@@ -36,5 +39,11 @@ Global
 		{46F3AD83-EAE0-4708-97D0-576B3E4E56CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F3AD83-EAE0-4708-97D0-576B3E4E56CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F3AD83-EAE0-4708-97D0-576B3E4E56CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {175D6783-2B6B-4094-BC0A-AD9C6C7FE9B1}
 	EndGlobalSection
 EndGlobal

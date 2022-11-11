@@ -53,13 +53,12 @@
     {
         if (PostId == null)
         {
-            Console.WriteLine("Thats why");
             return;
         }
         
         var enumerable = await CommentService.GetByPostIdAsync(PostId.Value);
         _comments = enumerable.ToList();
-        _comments.Sort((x, y) => DateTime.Compare(y.PublishedDateTime, x.PublishedDateTime));
+        _comments.Sort((x, y) => DateTime.Compare(x.PublishedDateTime, y.PublishedDateTime));
 
         StateHasChanged();
     }

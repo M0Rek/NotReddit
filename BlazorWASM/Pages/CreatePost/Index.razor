@@ -1,0 +1,13 @@
+@page "/CreatePost"
+@inject NavigationManager NavManager
+
+<AddPostComponent PostCreated="OnPostCreated"/>
+
+@code {
+
+    private void OnPostCreated()
+    {
+        NavManager.NavigateTo("/");
+    }
+
+}

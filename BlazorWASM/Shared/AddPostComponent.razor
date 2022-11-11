@@ -40,6 +40,18 @@
 
     private async void CreatePost()
     {
+        if (_title == String.Empty)
+        {
+            Snackbar.Add("Title cannot be empty!", Severity.Warning);
+            return;
+        }
+        
+        if (_content == String.Empty)
+        {
+            Snackbar.Add("Content cannot be empty!", Severity.Warning);
+            return;
+        }
+        
         await PostService.CreateAsync(new PostCreationRequestDto
         {
             Title = _title,

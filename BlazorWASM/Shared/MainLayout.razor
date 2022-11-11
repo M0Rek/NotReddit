@@ -11,7 +11,7 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">NOT Reddit</MudText>
+        <MudButton OnClick="@(() => NavigationManager.NavigateTo("/"))" Style="color: white; font-size: 2rem" Variant="Variant.Text">NOT Reddit</MudButton>
         <MudSpacer/>
         <AuthorizeView>
             <NotAuthorized>
@@ -19,6 +19,8 @@
                 <MudIconButton OnClick="@Login" Icon="@Icons.Material.Filled.Login" Color="Color.Inherit" Edge="Edge.End"/>
             </NotAuthorized>
             <Authorized>
+                <MudButton OnClick="@(() => NavigationManager.NavigateTo("/CreatePost"))" Style="color: white; font-size: 1rem" Variant="Variant.Text">Create new post</MudButton>
+                <MudSpacer/>
                 <MudText> Logged in as: @context.User.Identity?.Name</MudText>
                 <MudIconButton OnClick="@Logout" Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Edge="Edge.End"/>
             </Authorized>
@@ -36,7 +38,7 @@
     {
         NavigationManager.NavigateTo("/Login");
     }
-    
+
     private void Register()
     {
         NavigationManager.NavigateTo("/Register");

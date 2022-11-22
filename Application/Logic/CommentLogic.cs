@@ -52,7 +52,7 @@ public class CommentLogic : ICommentLogic
         {
             Content = dto.Content,
             OriginalPoster = dto.OriginalPoster,
-            CommentedOnId = dto.CommentedOnId,
+            CommentedOn = post,
         };
 
         return await _commentDao.CreateAsync(toCreate);

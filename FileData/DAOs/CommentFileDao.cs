@@ -30,7 +30,7 @@ public class CommentFileDao : ICommentDao
 
     public Task<IEnumerable<Comment>> GetByPostIdAsync(int id)
     {
-        var existing = context.Comments.Where(c => id == c.CommentedOnId);
+        var existing = context.Comments.Where(c => id == c.CommentedOn.Id);
         return Task.FromResult(existing);
     }
 }

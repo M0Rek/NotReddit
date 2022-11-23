@@ -2,6 +2,7 @@ using System.Text;
 using Application.IDAOs;
 using Application.ILogic;
 using Application.Logic;
+using EfcDataAccess;
 using EfcDataAccess.DAOs;
 using FileData;
 using FileData.DAOs;
@@ -25,6 +26,8 @@ builder.Services.AddScoped<ICommentDao, CommentEfcDao>();
 builder.Services.AddScoped<IPostLogic, PostLogic>();
 builder.Services.AddScoped<IAuthLogic, AuthLogic>();
 builder.Services.AddScoped<ICommentLogic, CommentLogic>();
+
+builder.Services.AddDbContext<NotRedditContext>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

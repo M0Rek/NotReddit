@@ -1,22 +1,33 @@
 using Application.IDAOs;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EfcDataAccess.DAOs;
 
 public class UserEfcDao : IUserDao
 {
-    public Task<User> CreateAsync(User user)
+    private readonly NotRedditContext _context;
+
+    public UserEfcDao(NotRedditContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public Task<User?> GetByUsernameAsync(string userName)
+    public async Task<User> CreateAsync(User user)
     {
-        throw new NotImplementedException();
+        EntityEntry<User> newUser = await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
+        return newUser.Entity;
     }
 
-    public Task<User?> GetByIdAsync(int id)
+    public async Task<User?> GetByUsernameAsync(string userName)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() ==  userName.ToLower());
+    }
+
+    public async Task<User?> GetByIdAsync(int id)
+    {
+        return await _context.Users.FindAsync(id);
     }
 }

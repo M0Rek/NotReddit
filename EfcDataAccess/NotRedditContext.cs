@@ -11,7 +11,7 @@ public class NotRedditContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source = NotReddit.db");
+        optionsBuilder.UseSqlite("Data Source = ../EfcDataAccess/NotReddit.db");
     }
     
 }
